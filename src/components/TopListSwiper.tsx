@@ -1,6 +1,6 @@
 "use client";
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
