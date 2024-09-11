@@ -1,9 +1,12 @@
 "use client";
+
+import TopListSwiper from "@/components/TopListSwiper";
+
 const TopMovie = () => {
   return (
-    <div className="min-h-screen">
-      <h1>TopMovie</h1>
-    </div>
+    <section className="min-h-screen">
+      <TopListSwiper />
+    </section>
   );
 };
 

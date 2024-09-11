@@ -76,7 +76,7 @@ const Content = () => {
             <Card className="h-screen">
               <CardContent className="flex h-full flex-col justify-center p-6">
                 <div className="absolute left-0 top-0 z-10 flex min-h-screen w-full items-center">
-                  <div className="ml-[12.5%] flex w-[21.938rem] flex-col gap-[1.875rem] text-white md:w-[36.875rem]">
+                  <div className="ml-[12.5%] flex w-[21.938rem] flex-col gap-[1.875rem] text-white min-[450px]:w-[23rem] sm:w-[36.875rem]">
                     <h2 className="mb-2 text-[2.5rem] font-bold">
                       {slide.title}
                     </h2>
@@ -90,7 +90,7 @@ const Content = () => {
                       </ButtonWhite>
                     </div>
                   </div>
-                  <div className="relative ml-[5%] hidden h-[32.5rem] w-[21.875rem] md:flex">
+                  <div className="relative ml-[5%] hidden h-[32.5rem] w-[21.875rem] lg:flex">
                     <Image
                       src={slide.poster}
                       fill
