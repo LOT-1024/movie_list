@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import {
-    Menu,
-    Package2,
-    // Search
+  Menu,
+  // Search
 } from "lucide-react";
 import image from "@/assets/logo.png";
 import { useScroll, motion, useTransform, useSpring } from "framer-motion";
@@ -16,72 +15,63 @@ import Image from "next/image";
 // import DarkModeButton from "@/components/toggle-darkmode";
 
 export default function Navbar({ children }: { children: React.ReactNode }) {
-    const { scrollY } = useScroll();
-    const rawOpacity = useTransform(scrollY, [0, 50], [1, 0]);
+  const { scrollY } = useScroll();
+  const rawOpacity = useTransform(scrollY, [0, 50], [1, 0]);
 
-    // Apply spring to smoothen the animation
-    const opacity = useSpring(rawOpacity, { stiffness: 200, damping: 30 });
-    return (
-        <motion.header
-            style={{ opacity }}
-            className="fixed z-50 top-0 flex w-screen h-16 items-center gap-4 border-b bg-background px-4 md:px-6"
+  // Apply spring to smoothen the animation
+  const opacity = useSpring(rawOpacity, { stiffness: 200, damping: 30 });
+  return (
+    <motion.header
+      style={{ opacity }}
+      className="fixed top-0 z-50 flex h-16 w-screen items-center gap-4 border-b bg-background px-4 md:px-6"
+    >
+      <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+        <Link
+          href="#"
+          className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
-            <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-                <Link
-                    href="#"
-                    className="flex items-center gap-2 text-lg font-semibold md:text-base"
-                >
-                    <Image className="w-20" alt="Logo" src={image} priority />
-                </Link>
-                <Link href="#" className="text-foreground transition-colors">
-                    Movie
-                </Link>
-                <Link
-                    href="#"
-                    className="text-muted-foreground transition-colors hover:text-foreground"
-                >
-                    TV Series
-                </Link>
-            </nav>
-            <Sheet>
-                <SheetTrigger asChild>
-                    <Button
-                        variant="outline"
-                        size="icon"
-                        className="shrink-0 md:hidden"
-                    >
-                        <Menu className="h-5 w-5" />
-                        <span className="sr-only">Toggle navigation menu</span>
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="left">
-                    <nav className="grid gap-6 text-lg font-medium">
-                        <Link
-                            href="#"
-                            className="flex items-center gap-2 text-lg font-semibold"
-                        >
-                            <Image
-                                className="w-20"
-                                alt="Logo"
-                                src={image}
-                                priority
-                            />
-                            <span className="sr-only">Acme Inc</span>
-                        </Link>
-                        <Link href="#" className="hover:text-foreground">
-                            Movie
-                        </Link>
-                        <Link
-                            href="#"
-                            className="text-muted-foreground hover:text-foreground"
-                        >
-                            TV Series
-                        </Link>
-                    </nav>
-                </SheetContent>
-            </Sheet>
-            {children}
-            {/* <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+          <Image className="w-20" alt="Logo" src={image} priority />
+        </Link>
+        <Link href="#" className="text-foreground transition-colors">
+          Movies
+        </Link>
+        <Link
+          href="#"
+          className="text-muted-foreground transition-colors hover:text-foreground"
+        >
+          TV Series
+        </Link>
+      </nav>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left">
+          <nav className="grid gap-6 text-lg font-medium">
+            <Link
+              href="#"
+              className="flex items-center gap-2 text-lg font-semibold"
+            >
+              <Image className="w-20" alt="Logo" src={image} priority />
+              <span className="sr-only">Acme Inc</span>
+            </Link>
+            <Link href="#" className="hover:text-foreground">
+              Movies
+            </Link>
+            <Link
+              href="#"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              TV Series
+            </Link>
+          </nav>
+        </SheetContent>
+      </Sheet>
+      {children}
+      {/* <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
                     <form className="ml-auto flex-1 sm:flex-initial">
                         <div className="relative">
                             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -94,6 +84,6 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
                     </form>
                     <DarkModeButton />
                 </div> */}
-        </motion.header>
-    );
+    </motion.header>
+  );
 }

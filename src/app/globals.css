@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.swiper-pagination-bullet {
+  background-color: #fff !important; /* Change this to your desired color */
+}
+
+/* Active bullet color */
+.swiper-pagination-bullet-active {
+  background-color: red !important; /* Change this to your desired color */
+}
+
+/* Change color of next arrow */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -65,4 +80,20 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  .shadowCustom {
+    background: #000; 
+    filter: blur(8px);
+    box-shadow: -2px -52px 55px 50px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: -2px -52px 55px 50px rgba(0, 0, 0, 1);
+    -moz-box-shadow: -2px -52px 55px 50px rgba(0, 0, 0, 1);
+  }
+  .buttonRedShadow {
+    box-shadow: 0px 0px 40px 5px rgba(255, 0, 0, 1);
+    -webkit-box-shadow: 0px 0px 40px 5px rgba(255, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 40px 5px rgba(255, 0, 0, 1);
+  }
+  
 }
