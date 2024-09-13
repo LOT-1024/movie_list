@@ -44,8 +44,8 @@ const TopListSwiper = () => {
         }}
         className="min-h-[20rem] w-4/5"
       >
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -55,8 +55,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -66,8 +66,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -77,8 +77,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -88,8 +88,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -99,8 +99,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -110,8 +110,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
@@ -121,19 +121,8 @@ const TopListSwiper = () => {
           </div>
           <h2 className="text-center">Movie Title</h2>
         </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
-            <Image
-              fill
-              src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
-              alt="Poster Movie"
-              className="rounded-2xl"
-            />
-          </div>
-          <h2 className="text-center">Movie Title</h2>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem]">
+        <SwiperSlide className="flex">
+          <div className="relative h-[14.5rem] w-[9.625rem] rounded-2xl lg:h-[20.25rem] lg:w-[13.5rem] mx-auto">
             <Image
               fill
               src={`https://image.tmdb.org/t/p/original/xEt2GSz9z5rSVpIHMiGdtf0czyf.jpg`}
