@@ -31,7 +31,6 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Image className="w-20" alt="Logo" src={image} priority />
-          <span className="sr-only">Logo Movie Wido</span>
         </Link>
         <Link href="#" className="text-foreground transition-colors">
           Movies

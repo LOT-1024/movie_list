@@ -10,6 +10,9 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "Movie Wido",
   description: "Movie List from tmdb",
+  icons: {
+    icon: icon.src,
+  },
 };
 
 export default function RootLayout({
