@@ -48,7 +48,7 @@ const rightItemAnimation = {
 
 const Footer = () => {
   return (
-    <footer className="h-[15.625rem] relative mt-36">
+    <footer className="aspect-[16/3.5] relative mt-36">
       <Image fill src={footer} alt="Footer background" />
       <motion.div
         className="w-4/5 mx-auto h-full relative flex items-center justify-between"
@@ -57,7 +57,7 @@ const Footer = () => {
         whileInView="ended"
       >
         <motion.div className="flex items-center" variants={leftItemAnimation}>
-          <Image src={icon} alt="icon" className="w-24" />
+          <Image src={icon} alt="icon" className="w-14 md:w-24" />
           <p className="text-white font-semibold text-lg md:text-2xl">
             Movie Wido
           </p>

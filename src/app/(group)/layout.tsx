@@ -12,6 +12,7 @@ import {
 import DarkModeButton from "@/components/darkmode/DarkModeButton";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer/Footer";
+import Header from "@/components/List/Header";
 
 export default function GroupLayout({
   children,
@@ -49,8 +50,9 @@ export default function GroupLayout({
           </DropdownMenuContent>
         </DropdownMenu>
       </Navbar>
+      <Header />
       <main className="relative">{children}</main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

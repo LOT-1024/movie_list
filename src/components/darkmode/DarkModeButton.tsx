@@ -6,7 +6,7 @@ import { Moon, Sun } from "lucide-react";
 
 const DarkModeButton = () => {
   const { theme, setTheme } = useTheme();
-  
+
   return (
     <Button
       variant="outline"
