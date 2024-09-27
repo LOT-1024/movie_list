@@ -7,10 +7,9 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import YoutubeModal from "./YoutubeModal";
 import { Movie } from "@/interface/type";
-import { slides } from "@/dummy/dataDummy";
 
 const containerAnimation = {
   starter: {},

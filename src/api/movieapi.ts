@@ -16,7 +16,7 @@ export async function getMoviesPopularHero(): Promise<Movie[]> {
   };
   try {
     const responseMovie = await axios.get(url, options);
-    const selectedMovieData = responseMovie.data.results.map((movie: any) => ({
+    const selectedMovieData = responseMovie.data.results.map((movie: Movie) => ({
       id: movie.id,
       title: movie.title,
       overview: movie.overview,
@@ -44,7 +44,7 @@ export async function getTopRatedMovies() {
   try {
     const result = axios.get(url, options);
     const selectNeededResult = (await result).data.results.map(
-      (movie: any) => ({
+      (movie: Movie) => ({
         id: movie.id,
         title: movie.title,
         poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
@@ -71,7 +71,7 @@ export async function getPopularMovies() {
   try {
     const result = axios.get(url, options);
     const selectNeededResult = (await result).data.results.map(
-      (movie: any) => ({
+      (movie: Movie) => ({
         id: movie.id,
         title: movie.title,
         poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
@@ -97,7 +97,7 @@ export async function getTopRatedTvSeries() {
   try {
     const result = axios.get(url, options);
     const selectNeededResult = (await result).data.results.map(
-      (movie: any) => ({
+      (movie: Movie) => ({
         id: movie.id,
         title: movie.name,
         poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
@@ -123,7 +123,7 @@ export async function getPopularTvSeries() {
   try {
     const result = axios.get(url, options);
     const selectNeededResult = (await result).data.results.map(
-      (movie: any) => ({
+      (movie: Movie) => ({
         id: movie.id,
         title: movie.name,
         poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
