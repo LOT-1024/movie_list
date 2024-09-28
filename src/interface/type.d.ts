@@ -8,6 +8,6 @@ export interface Movie {
   }
 
   export type SliderProps = {
-    fetchFunction: () => Promise<any>; // Adjust the return type if needed
+    fetchFunction: () => Promise<Movie[]>; // Adjust the return type if needed
     pageTitle: string
   };
