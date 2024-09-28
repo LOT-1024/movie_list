@@ -6,3 +6,8 @@ export interface Movie {
     poster_path:string,
     name:string
   }
+
+  export type SliderProps = {
+    fetchFunction: () => Promise<any>; // Adjust the return type if needed
+    pageTitle: string
+  };

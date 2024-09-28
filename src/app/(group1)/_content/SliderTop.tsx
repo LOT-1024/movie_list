@@ -4,9 +4,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
-import { Movie } from "@/interface/type";
+import { Movie, SliderProps } from "@/interface/type";
+import { useEffect, useState } from "react";
 
-const SliderTop = ({ data, pageTitle }: { data: Movie[], pageTitle:string }) => {
+const SliderTop = ({ fetchFunction, pageTitle }: SliderProps) => {
+  const [data, setData] = useState<Movie[]>([])
+
+  useEffect(() => {
+    async function fetchdata() {
+      try {
+        const data = await fetchFunction()
+        setData(data)
+      } catch (err) {
+        console.error(err)
+        throw new Error('Error Data Fetching')
+      }
+    }
+    fetchdata()
+  }, [])
+
   return (
     <section className="mt-16">
       <div className="w-4/5 max-w-[80rem] mx-auto">

@@ -11,9 +11,13 @@ const YoutubeModal = ({ setFunction, id }: { setFunction: () => void, id:number 
 
   useEffect(() => {
     async function fetchdata() {
-      const data = await getFirstVideoMovie(id)
-      const url = data.key
-      setYoutubeUrl(url)
+      try {
+        const data = await getFirstVideoMovie(id)
+        setYoutubeUrl(data.key)
+      } catch (err) {
+        console.error(err)
+        throw new Error('Error Data Fetching')
+      }
     }
     fetchdata()
   }, [])
