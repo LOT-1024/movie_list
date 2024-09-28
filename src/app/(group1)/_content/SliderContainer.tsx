@@ -6,6 +6,7 @@ import {
   getTopRatedTvSeries,
 } from "@/api/movieapiclient";
 import SliderTop from "./SliderTop";
+import { useEffect } from "react";
 
 const slideSection = [
   {
@@ -27,6 +28,10 @@ const slideSection = [
 ];
 
 const SliderContainer = () => {
+  useEffect(() => {
+    console.log(process.env.NEXT_PUBLIC_API_IMAGE_BASE_URL)
+  }, [])
+  
   return (
     <>
       {slideSection.map((item, i) => (

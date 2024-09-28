@@ -21,8 +21,8 @@ export async function getMoviesPopularHero(): Promise<Movie[]> {
       id: movie.id,
       title: movie.title,
       overview: movie.overview,
-      backdrop_path: `${IMAGE_BASE_URL}/${movie.backdrop_path}`,
-      poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
+      backdrop_path: `${IMAGE_BASE_URL}${movie.backdrop_path}`,
+      poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
     }));
     return selectedMovieData.slice(0, 5);
   } catch (error) {

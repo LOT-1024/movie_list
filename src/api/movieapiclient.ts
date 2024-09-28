@@ -44,7 +44,7 @@ export async function getTopRatedMovies():Promise<Movie[]> {
       (movie: Movie) => ({
         id: movie.id,
         title: movie.title,
-        poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
+        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
       })
     );
     return selectNeededResult;
@@ -71,7 +71,7 @@ export async function getPopularMovies():Promise<Movie[]> {
       (movie: Movie) => ({
         id: movie.id,
         title: movie.title,
-        poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
+        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
       })
     );
     return selectNeededResult;
@@ -97,7 +97,7 @@ export async function getTopRatedTvSeries():Promise<Movie[]> {
       (movie: Movie) => ({
         id: movie.id,
         title: movie.name,
-        poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
+        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
       })
     );
     return selectNeededResult;
@@ -123,7 +123,7 @@ export async function getPopularTvSeries():Promise<Movie[]> {
       (movie: Movie) => ({
         id: movie.id,
         title: movie.name,
-        poster_path: `${IMAGE_BASE_URL}/${movie.poster_path}`,
+        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
       })
     );
     return selectNeededResult;

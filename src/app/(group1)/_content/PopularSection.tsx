@@ -115,6 +115,7 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                   <Image
                     fill
                     src={item.poster_path}
+                    sizes="100%"
                     alt="Movie Poster"
                     className="rounded-2xl"
                     priority
