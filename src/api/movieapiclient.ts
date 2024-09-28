@@ -27,26 +27,22 @@ export async function getFirstVideoMovie(id: number) {
   }
 }
 
-export async function getTopRatedMovies():Promise<Movie[]> {
-  const url =
-    `${BASE_URL}/movie/top_rated?language=en-US&page=1`;
+export async function getTopRatedMovies(): Promise<Movie[]>  {
+  const url = `${BASE_URL}/movie/top_rated?language=en-US&page=1`;
   const options = {
     headers: {
       accept: "application/json",
-      Authorization:
-        `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
 
   try {
-    const result = axios.get(url, options);
-    const selectNeededResult = (await result).data.results.map(
-      (movie: Movie) => ({
-        id: movie.id,
-        title: movie.title,
-        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
-      })
-    );
+    const result = await axios.get(url, options);
+    const selectNeededResult = result.data.results.map((movie: Movie) => ({
+      id: movie.id,
+      title: movie.title,
+      poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
+    }));
     return selectNeededResult;
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -54,26 +50,22 @@ export async function getTopRatedMovies():Promise<Movie[]> {
   }
 }
 
-export async function getPopularMovies():Promise<Movie[]> {
-  const url =
-    `${BASE_URL}/movie/popular?language=en-US&page=1`;
+export async function getPopularMovies(): Promise<Movie[]> {
+  const url = `${BASE_URL}/movie/popular?language=en-US&page=1`;
   const options = {
     headers: {
       accept: "application/json",
-      Authorization:
-        `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
 
   try {
-    const result = axios.get(url, options);
-    const selectNeededResult = (await result).data.results.map(
-      (movie: Movie) => ({
-        id: movie.id,
-        title: movie.title,
-        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
-      })
-    );
+    const result = await axios.get(url, options);
+    const selectNeededResult = result.data.results.map((movie: Movie) => ({
+      id: movie.id,
+      title: movie.title,
+      poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
+    }));
     return selectNeededResult;
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -81,25 +73,22 @@ export async function getPopularMovies():Promise<Movie[]> {
   }
 }
 
-export async function getTopRatedTvSeries():Promise<Movie[]> {
+export async function getTopRatedTvSeries(): Promise<Movie[]> {
   const url = `${BASE_URL}/tv/top_rated?language=en-US&page=1`;
   const options = {
     headers: {
       accept: "application/json",
-      Authorization:
-        `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
 
   try {
-    const result = axios.get(url, options);
-    const selectNeededResult = (await result).data.results.map(
-      (movie: Movie) => ({
-        id: movie.id,
-        title: movie.name,
-        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
-      })
-    );
+    const result = await axios.get(url, options);
+    const selectNeededResult = result.data.results.map((movie: Movie) => ({
+      id: movie.id,
+      title: movie.name,
+      poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
+    }));
     return selectNeededResult;
   } catch (error) {
     console.error("Error fetching movies:", error);
@@ -107,25 +96,22 @@ export async function getTopRatedTvSeries():Promise<Movie[]> {
   }
 }
 
-export async function getPopularTvSeries():Promise<Movie[]> {
+export async function getPopularTvSeries(): Promise<Movie[]> {
   const url = `${BASE_URL}/tv/popular?language=en-US&page=1`;
   const options = {
     headers: {
       accept: "application/json",
-      Authorization:
-        `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
 
   try {
-    const result = axios.get(url, options);
-    const selectNeededResult = (await result).data.results.map(
-      (movie: Movie) => ({
-        id: movie.id,
-        title: movie.name,
-        poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
-      })
-    );
+    const result = await axios.get(url, options);
+    const selectNeededResult = result.data.results.map((movie: Movie) => ({
+      id: movie.id,
+      title: movie.name,
+      poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
+    }));
     return selectNeededResult;
   } catch (error) {
     console.error("Error fetching movies:", error);
