@@ -4,6 +4,7 @@ export interface Movie {
   overview: string;
   backdrop_path: string;
   poster_path: string;
+  name: string;
 }
 
 export interface CreditType {
