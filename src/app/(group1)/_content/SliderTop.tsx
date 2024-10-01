@@ -4,12 +4,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
-import { Movie, SliderProps } from "@/interface/type";
+import { Movie, SliderProps, TvSeriesType } from "@/interface/type";
 import { useEffect, useState } from "react";
 import SkeletonItem from '@/components/skeleton/SkeletonPoster'
 
-const SliderTop = ({ fetchFunction, pageTitle }: SliderProps) => {
-  const [data, setData] = useState<Movie[]>([]);
+function isMovie(item: Movie | TvSeriesType): item is Movie {
+  return 'title' in item;
+}
+
+const SliderTop = ({ fetchFunction, pageTitle, link }: SliderProps) => {
+  const [data, setData] = useState<Movie[]|TvSeriesType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [skeletonCount, setSkeletonCount] = useState(2);
@@ -80,14 +84,14 @@ const SliderTop = ({ fetchFunction, pageTitle }: SliderProps) => {
     return data.map((item, i) => (
       <SwiperSlide key={i}>
           <Link
-            href={`/detail?id=${item.id}`}
+            href={`${link}/${item.id}`}
             className="w-full aspect-[9/14] md:w-[12.5rem] lg:w-[13.5rem] rounded-2xl relative flex justify-center items-center"
           >
             <Image
               fill
               src={item.poster_path}
               sizes="100%"
-              alt={`${item.title} Poster`}
+              alt={`${isMovie(item) ? item.title : item.name} Poster`}
               className="rounded-2xl"
               onLoad={() => setIsLoadingImage(false)}
               style={{ display: isLoadingImage ? "none" : "block" }}
@@ -100,8 +104,8 @@ const SliderTop = ({ fetchFunction, pageTitle }: SliderProps) => {
               />
             </div>
           </Link>
-          <Link href={`/detail?id=${item.id}`} className="font-semibold mt-2 line-clamp-1 hover:text-red-700 duration-300 ease-in-out text-center">
-            {item.title}
+          <Link href={`${link}/${item.id}`} className="font-semibold mt-2 line-clamp-1 hover:text-red-700 duration-300 ease-in-out text-center">
+            {isMovie(item) ? item.title : item.name}
           </Link>
       </SwiperSlide>
     ));

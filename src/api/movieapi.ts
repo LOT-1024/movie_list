@@ -1,4 +1,4 @@
-import { CreditType, Movie, VideoType } from "@/interface/type";
+import { CreditType, Movie, TvSeriesType, VideoType } from "@/interface/type";
 import axios from "axios";
 
 const API_KEY = process.env.NEXT_API_KEY; // Replace with your actual API key
@@ -31,7 +31,7 @@ export async function getMoviesPopularHero(): Promise<Movie[]> {
   }
 }
 
-const getDetailMovie = async (id: number) => {
+const getDetailMovie = async (id: number):Promise<Movie> => {
   const url = `${BASE_URL}/movie/${id.toString()}?language=en-US`;
   const options = {
     headers: {
@@ -41,7 +41,7 @@ const getDetailMovie = async (id: number) => {
   };
   try {
     const response = await axios.get(url, options);
-    const setData = {
+    const setData:Movie = {
       id: response.data.id,
       title: response.data.title,
       overview: response.data.overview,
@@ -55,7 +55,7 @@ const getDetailMovie = async (id: number) => {
   }
 };
 
-const getCreditMovie = async (id: number) => {
+const getCreditMovie = async (id: number): Promise<CreditType[]> => {
   const url = `${BASE_URL}/movie/${id.toString()}/credits?language=en-US`;
   const options = {
     headers: {
@@ -79,7 +79,7 @@ const getCreditMovie = async (id: number) => {
   }
 };
 
-const getTrailerMovie = async (id:number) => {
+const getTrailerMovie = async (id:number): Promise<VideoType[]> => {
   const url = `${BASE_URL}/movie/${id.toString()}/videos?language=en-US`;
   const options = {
     headers: {
@@ -101,7 +101,7 @@ const getTrailerMovie = async (id:number) => {
   }
 }
 
-const getRecommendationsMovie = async (id:number) => {
+const getRecommendationsMovie = async (id:number): Promise<Movie[]> => {
   const url = `${BASE_URL}/movie/${id.toString()}/recommendations?language=en-US&page=1`;
   const options = {
     headers: {
@@ -132,6 +132,113 @@ export const getDataDetailMovie = async (id:number) => {
     const recommendationsMovie = await getRecommendationsMovie(id)
 
     return {detailMovie, creditMovie, trailerdetailMovie, recommendationsMovie}
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    throw new Error("Failed to fetch movies");
+  }
+}
+
+const getDetailTvSeries = async (id:number):Promise<TvSeriesType> => {
+  const url = `${BASE_URL}/tv/${id.toString()}?language=en-US`;
+  const options = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+  try {
+    const response = await axios.get(url, options);
+    const setData:TvSeriesType = {
+      id: response.data.id,
+      name: response.data.name,
+      overview: response.data.overview,
+      backdrop_path: `${IMAGE_BASE_URL}${response.data.backdrop_path}`,
+      poster_path: `${IMAGE_BASE_URL}${response.data.poster_path}`,
+    };
+    return setData;
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    throw new Error("Failed to fetch movies");
+  }
+}
+
+const getCreditTvSeries = async (id:number):Promise<CreditType[]> => {
+  const url = `${BASE_URL}/tv/${id.toString()}/credits?language=en-US`;
+  const options = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+  try {
+    const response = await axios.get(url, options)
+    const setData =  response.data.cast.map((detail:CreditType) => (
+      {
+        name: detail.name,
+        profile_path: `${IMAGE_BASE_URL}${detail.profile_path}`,
+        character: detail.character
+      }
+    ))
+    return setData.slice(0,4)
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    throw new Error("Failed to fetch movies");
+  }
+}
+
+const getTrailerTvSeries = async (id:number): Promise<VideoType[]> => {
+  const url = `${BASE_URL}/tv/${id.toString()}/videos?language=en-US`;
+  const options = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await axios.get(url, options) 
+    const setData = response.data.results.map((data:VideoType) => ({
+      name: data.name,
+      key: data.key
+    }))
+    return setData.slice(0,6)
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    throw new Error("Failed to fetch movies");
+  }
+}
+
+const getRecommendationsTvSeries = async (id:number): Promise<TvSeriesType[]> => {
+  const url = `${BASE_URL}/tv/${id.toString()}/recommendations?language=en-US&page=1`;
+  const options = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await axios.get(url,options)
+    const setData = response.data.results.map((data:TvSeriesType) => ({
+      id: data.id,
+      name: data.name,
+      poster_path: `${IMAGE_BASE_URL}${data.poster_path}`
+    }))
+    return setData
+  } catch (err) {
+    console.error("Error fetching movies:", err);
+    throw new Error("Failed to fetch movies");
+  }
+}
+
+export const getDataDetailTvSeries = async (id:number) => {
+  try {
+    const detailTvSeries = await getDetailTvSeries(id)
+    const creditTvSeries = await getCreditTvSeries(id)
+    const trailerdetailTvSeries = await getTrailerTvSeries(id)
+    const recommendationsTvSeries = await getRecommendationsTvSeries(id)
+
+    return {detailTvSeries, creditTvSeries, trailerdetailTvSeries, recommendationsTvSeries}
   } catch (err) {
     console.error("Error fetching movies:", err);
     throw new Error("Failed to fetch movies");

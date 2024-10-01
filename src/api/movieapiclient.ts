@@ -1,4 +1,4 @@
-import { Movie } from "@/interface/type";
+import { Movie, TvSeriesType } from "@/interface/type";
 import axios from "axios";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // Replace with your actual API key
@@ -73,7 +73,7 @@ export async function getPopularMovies(): Promise<Movie[]> {
   }
 }
 
-export async function getTopRatedTvSeries(): Promise<Movie[]> {
+export async function getTopRatedTvSeries(): Promise<TvSeriesType[]> {
   const url = `${BASE_URL}/tv/top_rated?language=en-US&page=1`;
   const options = {
     headers: {
@@ -84,7 +84,7 @@ export async function getTopRatedTvSeries(): Promise<Movie[]> {
 
   try {
     const result = await axios.get(url, options);
-    const selectNeededResult = result.data.results.map((movie: Movie) => ({
+    const selectNeededResult = result.data.results.map((movie: TvSeriesType) => ({
       id: movie.id,
       title: movie.name,
       poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,
@@ -96,7 +96,7 @@ export async function getTopRatedTvSeries(): Promise<Movie[]> {
   }
 }
 
-export async function getPopularTvSeries(): Promise<Movie[]> {
+export async function getPopularTvSeries(): Promise<TvSeriesType[]> {
   const url = `${BASE_URL}/tv/popular?language=en-US&page=1`;
   const options = {
     headers: {
@@ -107,7 +107,7 @@ export async function getPopularTvSeries(): Promise<Movie[]> {
 
   try {
     const result = await axios.get(url, options);
-    const selectNeededResult = result.data.results.map((movie: Movie) => ({
+    const selectNeededResult = result.data.results.map((movie: TvSeriesType) => ({
       id: movie.id,
       title: movie.name,
       poster_path: `${IMAGE_BASE_URL}${movie.poster_path}`,

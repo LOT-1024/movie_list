@@ -1,15 +1,15 @@
 import Image from "next/image";
-import YoutubeCustom from "./_content/YoutubeCustom";
-import SimilarFilmSlider from "./_content/SimilarFilm";
+import YoutubeCustom from "./_content/YoutubeCustomMovie";
+import SimilarFilmSlider from "./_content/SimilarFilmMovie";
 import { getDataDetailMovie } from "@/api/movieapi";
 import { CreditType } from "@/interface/type";
 
 const Detail = async ({
-  searchParams,
+  params,
 }: {
-  searchParams: { [key: string]: string };
+  params: { id: string };
 }) => {
-  const id = parseInt(searchParams.id);
+  const id = parseInt(params.id);
   const data = await getDataDetailMovie(id)
   return (
     <>

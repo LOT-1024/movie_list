@@ -5,11 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
 import { useState } from "react";
+import { TvSeriesType } from "@/interface/type";
 
 const SimilarFilmSlider = ({
   similarData,
 }: {
-  similarData: { id: number; poster_path: string; title: string }[];
+  similarData: TvSeriesType[];
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -43,7 +44,7 @@ const SimilarFilmSlider = ({
               fill
               src={item.poster_path}
               sizes="100%"
-              alt={`${item.title} Poster`}
+              alt={`${item.name} Poster`}
               className="rounded-2xl"
               onLoad={() => setIsLoading(false)}
               style={{ display: isLoading ? "none" : "block" }}
@@ -60,7 +61,7 @@ const SimilarFilmSlider = ({
             href={`/detail?id=${item.id}`}
             className="font-semibold mt-2 line-clamp-1 hover:text-red-700 duration-300 ease-in-out text-center"
           >
-            {item.title}
+            {item.name}
           </Link>
         </SwiperSlide>
       ))}
