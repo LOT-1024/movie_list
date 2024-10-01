@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import YoutubeModal from "./YoutubeModal";
 import { Movie } from "@/interface/type";
+import Link from "next/link";
 
 const containerAnimation = {
   starter: {},
@@ -39,8 +40,9 @@ const itemsAnimation = {
 const PopularSection = ({ data }: { data: Movie[] }) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [movieId, setMovieId] = useState(1022789);
+  const [isLoading, setIsLoading] = useState(true);
 
-  function modalHandler(itemId:number) {
+  function modalHandler(itemId: number) {
     setMovieId(itemId);
     setModalStatus((prev) => !prev);
   }
@@ -67,10 +69,12 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                   fill
                   src={item.backdrop_path}
                   alt={`Movie ${item.title} Background`}
+                  onLoad={() => setIsLoading(false)}
+                  style={{ display: isLoading ? "none" : "block" }}
                 />
               </motion.div>
               <span className="sr-only">{item.title}</span>
-              <div className="bg-black absolute h-6 md:h-8 w-full bottom-0 shadow-[0_-5px_20px_15px_rgba(0,0,0,0.9)]"></div>
+              <div className="dark:bg-black absolute h-6 md:h-8 w-full bottom-0 dark:shadow-[0_-5px_20px_15px_rgba(0,0,0,0.9)]"></div>
               <div className="bg-black/50 absolute h-full w-full"></div>
               <div className="flex w-4/5 max-w-[80rem] absolute items-center justify-center gap-10">
                 <motion.div
@@ -95,9 +99,12 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                     className="flex gap-4 text-xs md:text-base"
                     variants={itemsAnimation}
                   >
-                    <button className="bg-red-700 px-6 py-2 rounded-full font-semibold hover:shadow-[0_0_23px_5px_rgba(204,0,0,0.89)] duration-300">
+                    <Link
+                      href={`/detail?id=${item.id}`}
+                      className="bg-red-700 px-6 py-2 rounded-full font-semibold hover:shadow-[0_0_23px_5px_rgba(204,0,0,0.89)] duration-300"
+                    >
                       Watch Now
-                    </button>
+                    </Link>
                     <button
                       className="border-2 border-solid border-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-black duration-500"
                       onClick={() => modalHandler(item.id)}
@@ -118,6 +125,8 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                     sizes="100%"
                     alt="Movie Poster"
                     className="rounded-2xl"
+                    onLoad={() => setIsLoading(false)}
+                    style={{ display: isLoading ? "none" : "block" }}
                     priority
                   />
                   <span className="sr-only">{item.title}</span>

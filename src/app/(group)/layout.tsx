@@ -22,8 +22,7 @@ export default function GroupLayout({
   return (
     <>
       <Navbar>
-        <form className="ml-auto flex-1 sm:flex-initial">
-          <div className="relative">
+          <div className="ml-auto flex-1 relative sm:flex-initial">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
@@ -31,7 +30,6 @@ export default function GroupLayout({
               className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
             />
           </div>
-        </form>
         <DarkModeButton />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
