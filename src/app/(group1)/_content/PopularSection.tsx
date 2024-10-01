@@ -100,7 +100,7 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                     variants={itemsAnimation}
                   >
                     <Link
-                      href={`/detail?id=${item.id}`}
+                      href={`/moviedetail/${item.id}`}
                       className="bg-red-700 px-6 py-2 rounded-full font-semibold hover:shadow-[0_0_23px_5px_rgba(204,0,0,0.89)] duration-300"
                     >
                       Watch Now
