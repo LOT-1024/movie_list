@@ -20,7 +20,7 @@ const YoutubeModal = ({ setFunction, id }: { setFunction: () => void, id:number 
       }
     }
     fetchdata()
-  }, [])
+  }, [id])
   
 
   return (
