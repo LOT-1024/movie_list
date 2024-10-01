@@ -32,9 +32,6 @@ const slideSection = [
 ];
 
 const SliderContainer = () => {
-  useEffect(() => {
-    console.log(process.env.NEXT_PUBLIC_API_IMAGE_BASE_URL)
-  }, [])
   
   return (
     <>
