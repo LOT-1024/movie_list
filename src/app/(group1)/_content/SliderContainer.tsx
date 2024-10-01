@@ -6,7 +6,6 @@ import {
   getTopRatedTvSeries,
 } from "@/api/movieapiclient";
 import SliderTop from "./SliderTop";
-import { useEffect } from "react";
 
 const slideSection = [
   {
