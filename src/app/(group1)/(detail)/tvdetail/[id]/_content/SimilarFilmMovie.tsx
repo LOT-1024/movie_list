@@ -37,7 +37,7 @@ const SimilarFilmSlider = ({
       {similarData.map((item, i) => (
         <SwiperSlide key={i}>
           <Link
-            href={`tvdetail/${item.id}`}
+            href={`${item.id}`}
             className="w-full aspect-[9/14] md:w-[12.5rem] lg:w-[13.5rem] rounded-2xl relative flex justify-center items-center"
           >
             <Image
@@ -58,7 +58,7 @@ const SimilarFilmSlider = ({
             </div>
           </Link>
           <Link
-            href={`/tvdetail/${item.id}`}
+            href={`${item.id}`}
             className="font-semibold mt-2 line-clamp-1 hover:text-red-700 duration-300 ease-in-out text-center"
           >
             {item.name}
