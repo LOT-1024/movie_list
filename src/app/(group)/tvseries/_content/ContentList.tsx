@@ -21,7 +21,7 @@ const ContentList = async ({query, currentPage}:{query:string, currentPage:numbe
         {data.tvseries.map((item, i) => (
           <div key={i}>
             <Link
-              href={`/moviedetail/${item.id}`}
+              href={`/tvdetail/${item.id}`}
               className="block w-full aspect-[9/14] relative"
             >
               <ImageSimilar
@@ -36,7 +36,7 @@ const ContentList = async ({query, currentPage}:{query:string, currentPage:numbe
               </div>
             </Link>
             <Link
-              href={`/moviedetail/${item.id}`}
+              href={`/tvdetail/${item.id}`}
               className="font-semibold mt-2 line-clamp-1 hover:text-red-700 duration-300 ease-in-out text-center"
             >
               {item.name}
