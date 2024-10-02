@@ -15,9 +15,26 @@ const YoutubeCustom = ({
   const firstLink = {
     name: videoList[0].name,
     key: videoList[0].key,
-  }
+  };
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(firstLink);
+  const [isLoading, setIsLoading] = useState({
+    mainThumbnail: true,
+    swiperThumbnails: Array(videoList.length).fill(true),
+  });
+
+  const handleMainThumbnailLoad = () => {
+    setIsLoading((prev) => ({ ...prev, mainThumbnail: false }));
+  };
+
+  const handleSwiperThumbnailLoad = (index: number) => {
+    setIsLoading((prev) => ({
+      ...prev,
+      swiperThumbnails: prev.swiperThumbnails.map((item, i) =>
+        i === index ? false : item
+      ),
+    }));
+  };
 
   return (
     <>
@@ -36,7 +53,8 @@ const YoutubeCustom = ({
                 width={5000}
                 src={`https://img.youtube.com/vi/${currentUrl.key}/0.jpg`}
                 alt={`${currentUrl.name} Thumbnail`}
-                className="w-full aspect-video"
+                onLoad={handleMainThumbnailLoad}
+                className={`w-full aspect-video ${isLoading.mainThumbnail ? "hidden" : "block"}`}
                 priority
               />
               <Play
@@ -64,11 +82,11 @@ const YoutubeCustom = ({
       </div>
       <Swiper
         className="w-full"
-        slidesPerView={2} // Default slides per view
-        spaceBetween={10} // Optional: adds some spacing between slides
+        slidesPerView={2}
+        spaceBetween={10}
         breakpoints={{
           768: {
-            slidesPerView: 3, // Show 3 slides on tablets or medium screens
+            slidesPerView: 3,
           },
         }}
       >
@@ -78,6 +96,7 @@ const YoutubeCustom = ({
               onClick={() => {
                 setCurrentUrl(item);
                 setIsLoaded(false);
+                setIsLoading((prev) => ({ ...prev, mainThumbnail: true }));
               }}
             >
               <Image
@@ -85,7 +104,8 @@ const YoutubeCustom = ({
                 height={5000}
                 src={`https://img.youtube.com/vi/${item.key}/0.jpg`}
                 alt={`${item.name} Thumbnail`}
-                className="w-full h-auto aspect-video"
+                onLoad={() => handleSwiperThumbnailLoad(i)}
+                className={`w-full h-auto aspect-video ${isLoading.swiperThumbnails[i] ? "hidden" : "block"}`}
               />
             </button>
           </SwiperSlide>

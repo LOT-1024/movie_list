@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="relative flex justify-center aspect-[16/4] items-center">
       <Image src={headerImage} fill alt="Header Background Image" />
-      <div className="dark:bg-black absolute h-6 md:h-8 w-full bottom-0 dark:shadow-[0_-5px_20px_15px_rgba(0,0,0,0.9)]"></div>
+      <div className="dark:bg-black absolute h-1 md:h-4 w-full bottom-0 dark:shadow-[0_-5px_20px_15px_rgba(0,0,0,0.9)]"></div>
       <HeaderTitle />
     </div>
   );

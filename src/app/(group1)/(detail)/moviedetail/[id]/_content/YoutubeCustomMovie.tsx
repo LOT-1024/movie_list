@@ -18,6 +18,7 @@ const YoutubeCustom = ({
   }
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentUrl, setCurrentUrl] = useState(firstLink);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <>
@@ -36,7 +37,8 @@ const YoutubeCustom = ({
                 width={5000}
                 src={`https://img.youtube.com/vi/${currentUrl.key}/0.jpg`}
                 alt={`${currentUrl.name} Thumbnail`}
-                className="w-full aspect-video"
+                onLoad={() => setIsLoading(false)}
+                className={`w-full aspect-video ${isLoading ? 'hidden' : 'block'}`}
                 priority
               />
               <Play
@@ -85,7 +87,8 @@ const YoutubeCustom = ({
                 height={5000}
                 src={`https://img.youtube.com/vi/${item.key}/0.jpg`}
                 alt={`${item.name} Thumbnail`}
-                className="w-full h-auto aspect-video"
+                onLoad={() => setIsLoading(false)}
+                className={`w-full h-auto aspect-video ${isLoading ? 'hidden' : 'block'}`}
               />
             </button>
           </SwiperSlide>

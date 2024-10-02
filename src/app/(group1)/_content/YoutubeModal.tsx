@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const YoutubeModal = ({ setFunction, id }: { setFunction: () => void, id:number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [youtubeUrl, setYoutubeUrl] = useState('QggJzZdIYPI')
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchdata() {
@@ -42,7 +43,8 @@ const YoutubeModal = ({ setFunction, id }: { setFunction: () => void, id:number 
               width={5000}
               src={`https://img.youtube.com/vi/${youtubeUrl}/0.jpg`}
               alt="Teto MV Thumbnail"
-              className="w-full aspect-video"
+              onLoad={() => setIsLoading(false)}
+              className={`w-full aspect-video ${isLoading ? 'hidden' : 'block'}`}
               priority
             />
             <Play

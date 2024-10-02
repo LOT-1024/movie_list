@@ -1,19 +1,16 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
-import { useState } from "react";
 import { Movie } from "@/interface/type";
+import ImageSimilar from "@/components/detailImage/ImageSimilar";
 
 const SimilarFilmSlider = ({
   similarData,
 }: {
   similarData: Movie[];
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <Swiper
       className="mt-5 w-full"
@@ -40,16 +37,7 @@ const SimilarFilmSlider = ({
             href={`${item.id}`}
             className="w-full aspect-[9/14] md:w-[12.5rem] lg:w-[13.5rem] rounded-2xl relative flex justify-center items-center"
           >
-            <Image
-              fill
-              src={item.poster_path}
-              sizes="100%"
-              alt={`${item.title} Poster`}
-              className="rounded-2xl"
-              onLoad={() => setIsLoading(false)}
-              style={{ display: isLoading ? "none" : "block" }}
-              priority
-            />
+            <ImageSimilar poster_path={item.poster_path} name={item.title}/>
             <div className="w-full h-full absolute rounded-2xl group hover:bg-black/50 duration-300 flex justify-center items-center ease-in-out">
               <Play
                 fill="red"

@@ -1,12 +1,12 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
 import { Movie, SliderProps, TvSeriesType } from "@/interface/type";
 import { useEffect, useState } from "react";
 import SkeletonItem from '@/components/skeleton/SkeletonPoster'
+import ImageSimilar from "@/components/detailImage/ImageSimilar";
 
 function isMovie(item: Movie | TvSeriesType): item is Movie {
   return 'title' in item;
@@ -17,7 +17,6 @@ const SliderTop = ({ fetchFunction, pageTitle, link }: SliderProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [skeletonCount, setSkeletonCount] = useState(2);
-  const [isLoadingImage, setIsLoadingImage] = useState(true)
 
   useEffect(() => {
     async function fetchdata() {
@@ -87,16 +86,7 @@ const SliderTop = ({ fetchFunction, pageTitle, link }: SliderProps) => {
             href={`${link}/${item.id}`}
             className="w-full aspect-[9/14] md:w-[12.5rem] lg:w-[13.5rem] rounded-2xl relative flex justify-center items-center"
           >
-            <Image
-              fill
-              src={item.poster_path}
-              sizes="100%"
-              alt={`${isMovie(item) ? item.title : item.name} Poster`}
-              className="rounded-2xl"
-              onLoad={() => setIsLoadingImage(false)}
-              style={{ display: isLoadingImage ? "none" : "block" }}
-              priority
-            />
+            <ImageSimilar poster_path={item.poster_path} name={isMovie(item) ? item.title : item.name} />
             <div className="w-full h-full absolute rounded-2xl group hover:bg-black/50 duration-300 flex justify-center items-center ease-in-out">
               <Play
                 fill="red"

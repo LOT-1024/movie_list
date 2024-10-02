@@ -5,12 +5,13 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import YoutubeModal from "./YoutubeModal";
 import { Movie } from "@/interface/type";
 import Link from "next/link";
+import BackdropImage from "@/components/detailImage/BackdropImage";
+import ImagePoster from "@/components/detailImage/ImagePoster";
 
 const containerAnimation = {
   starter: {},
@@ -40,7 +41,6 @@ const itemsAnimation = {
 const PopularSection = ({ data }: { data: Movie[] }) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [movieId, setMovieId] = useState(1022789);
-  const [isLoading, setIsLoading] = useState(true);
 
   function modalHandler(itemId: number) {
     setMovieId(itemId);
@@ -65,13 +65,7 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.75 }}
               >
-                <Image
-                  fill
-                  src={item.backdrop_path}
-                  alt={`Movie ${item.title} Background`}
-                  onLoad={() => setIsLoading(false)}
-                  style={{ display: isLoading ? "none" : "block" }}
-                />
+                <BackdropImage backdrop_path={item.backdrop_path} title={item.title}/>
               </motion.div>
               <span className="sr-only">{item.title}</span>
               <div className="dark:bg-black absolute h-6 md:h-8 w-full bottom-0 dark:shadow-[0_-5px_20px_15px_rgba(0,0,0,0.9)]"></div>
@@ -119,16 +113,7 @@ const PopularSection = ({ data }: { data: Movie[] }) => {
                   whileInView={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 200 }}
                 >
-                  <Image
-                    fill
-                    src={item.poster_path}
-                    sizes="100%"
-                    alt="Movie Poster"
-                    className="rounded-2xl"
-                    onLoad={() => setIsLoading(false)}
-                    style={{ display: isLoading ? "none" : "block" }}
-                    priority
-                  />
+                  <ImagePoster poster_path={item.poster_path}/>
                   <span className="sr-only">{item.title}</span>
                 </motion.div>
               </div>
