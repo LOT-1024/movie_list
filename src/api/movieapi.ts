@@ -220,7 +220,7 @@ export const getDiscoverTvSeries = async (page:number): Promise<{
     }));
     const total = {
       tvseries: setData,
-      totalPages: response.data.total_pages,
+      totalPages: 500,
     };
     return total;
   } catch (err) {
@@ -244,7 +244,7 @@ export const getDiscoverMovies = async (page:number): Promise<{
     }));
     const total = {
       movies: setData,
-      totalPages: response.data.total_pages,
+      totalPages: 500,
     };
     return total;
   } catch (err) {
