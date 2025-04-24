@@ -1,16 +1,41 @@
+'use client'
+
 import YoutubeCustom from "./_content/YoutubeCustomMovie";
 import SimilarFilmSlider from "./_content/SimilarFilmMovie";
-import { CreditType } from "@/interface/type";
-import { getDataDetailTvSeries } from "@/api/movieapi";
+import { CreditType, TvSeriesType, VideoType } from "@/interface/type";
+import { getDataDetailTvSeries } from "@/api/movieapiclient";
 import BackdropImage from "@/components/detailImage/BackdropImage";
 import ImageActor from "@/components/detailImage/ImageActor";
 import ImagePoster from "@/components/detailImage/ImagePoster";
 import { Loader2 } from "lucide-react";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-const DetailTv = async ({ params }: { params: { id: string } }) => {
-  const id = parseInt(params.id);
-  const data = await getDataDetailTvSeries(id);
+interface DetailType {
+  detailTvSeries: TvSeriesType;
+  creditTvSeries: CreditType[];
+  trailerdetailTvSeries: VideoType[];
+  recommendationsTvSeries: TvSeriesType[];
+}
+
+const DetailTv = () => {
+  // const id = parseInt(params.id);
+  // const data = await getDataDetailTvSeries(id);
+
+  const params = useParams(); // { id: "1234" } from /movie/[id]
+  const id = parseInt(params.id as string);
+
+  const [data, setData] = useState<DetailType>();
+  // const data = await getDataDetailMovie(id)
+
+  const fetchData = async () => {
+    const rawData = await getDataDetailTvSeries(id);
+    setData(rawData);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Suspense
       fallback={
@@ -21,25 +46,25 @@ const DetailTv = async ({ params }: { params: { id: string } }) => {
     >
       <section className="h-[25.875rem] sm:h-[41.875rem] xl:h-[50rem] text-white flex justify-center items-center relative">
         <BackdropImage
-          backdrop_path={data.detailTvSeries.backdrop_path}
-          title={data.detailTvSeries.name}
+          backdrop_path={data?.detailTvSeries.backdrop_path}
+          title={data?.detailTvSeries.name}
         />
         <div className="dark:bg-black absolute h-6 md:h-8 w-full bottom-0 dark:shadow-[0_-5px_20px_15px_rgba(0,0,0,0.9)]"></div>
         <div className="bg-black/50 absolute h-full w-full"></div>
         <div className="flex w-4/5 max-w-[80rem] absolute items-center justify-center gap-10">
           <div className="w-[21.875rem] aspect-[9/14] relative hidden lg:flex rounded-2xl animate-scaleCenter">
-            <ImagePoster poster_path={data.detailTvSeries.poster_path} />
-            <span className="sr-only">{data.detailTvSeries.name}</span>
+            <ImagePoster poster_path={data?.detailTvSeries.poster_path} />
+            <span className="sr-only">{data?.detailTvSeries.name}</span>
           </div>
           <div className="flex flex-col gap-5 w-full flex-1">
             <h2 className="font-bold text-xl md:text-2xl animate-moveDown">
-              {data.detailTvSeries.name}
+              {data?.detailTvSeries.name}
             </h2>
             <p className="line-clamp-3 md:line-clamp-4 animate-moveDown1">
-              {data.detailTvSeries.overview}
+              {data?.detailTvSeries.overview}
             </p>
             <div className="md:w-[65%] md:mx-auto grid grid-cols-4 gap-3 animate-moveDown2">
-              {data.creditTvSeries.map((item: CreditType, i: number) => (
+              {data?.creditTvSeries.map((item: CreditType, i: number) => (
                 <a
                   target="_blank"
                   href={`https://www.google.com/search?q=${encodeURIComponent(item.name)}`}
@@ -65,8 +90,8 @@ const DetailTv = async ({ params }: { params: { id: string } }) => {
       <section className="mt-10">
         <div className="w-4/5 mx-auto max-w-[80rem] flex flex-col gap-5">
           <h1 className="text-3xl font-semibold">Video Trailer</h1>
-          {data.trailerdetailTvSeries.length > 0 ? (
-            <YoutubeCustom videoList={data.trailerdetailTvSeries} />
+          {data?.trailerdetailTvSeries && data?.trailerdetailTvSeries.length > 0 ? (
+            <YoutubeCustom videoList={data?.trailerdetailTvSeries} />
           ) : (
             <h2 className="mt-3 opacity-70 text-xl font-semibold">
               No Video Trailer
@@ -78,7 +103,7 @@ const DetailTv = async ({ params }: { params: { id: string } }) => {
       <section className="mt-10">
         <div className="w-4/5 mx-auto max-w-[80rem] flex flex-col gap-5">
           <h2 className="text-2xl font-semibold">Similar Film</h2>
-          <SimilarFilmSlider similarData={data.recommendationsTvSeries} />
+          <SimilarFilmSlider similarData={data?.recommendationsTvSeries} />
         </div>
       </section>
     </Suspense>

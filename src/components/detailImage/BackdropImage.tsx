@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { useState } from "react"
 
-const BackdropImage = ({backdrop_path, title}:{backdrop_path:string, title:string}) => {
+const BackdropImage = ({backdrop_path = 'https://placehold.co/600x400', title}:{backdrop_path:string | undefined, title:string | undefined}) => {
     const [loading, setLoading] = useState(true)
   return (
     <>
@@ -13,6 +13,8 @@ const BackdropImage = ({backdrop_path, title}:{backdrop_path:string, title:strin
           className={`${loading ? 'none' : 'block'}`}
           alt={`Backdrop Image ${title}`}
           sizes="100%"
+          priority
+          unoptimized
         />
     </>
   )

@@ -1,11 +1,9 @@
 import { Loader2 } from "lucide-react";
 import PopularSection from "./_content/PopularSection";
 import SliderContainer from "./_content/SliderContainer";
-import { getMoviesPopularHero } from "@/api/movieapi";
 import { Suspense } from "react";
 
 const Home = async () => {
-  const movieHero = await getMoviesPopularHero();
   return (
     <Suspense
       fallback={
@@ -14,7 +12,7 @@ const Home = async () => {
         </div>
       }
     >
-      <PopularSection data={movieHero} />
+      <PopularSection />
       <SliderContainer />
     </Suspense>
   );

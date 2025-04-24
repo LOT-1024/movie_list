@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const ImagePoster = ({ poster_path }: { poster_path: string }) => {
+const ImagePoster = ({ poster_path = 'https://placehold.co/600x400' }: { poster_path: string | undefined }) => {
   const [loading, setLoading] = useState(true);
   return (
     <>
@@ -15,6 +15,7 @@ const ImagePoster = ({ poster_path }: { poster_path: string }) => {
         onLoad={() => setLoading(false)}
         className={`rounded-2xl ${loading ? "none" : "block"}`}
         priority
+        unoptimized
       />
     </>
   );

@@ -9,7 +9,7 @@ import ImageSimilar from "@/components/detailImage/ImageSimilar";
 const SimilarFilmSlider = ({
   similarData,
 }: {
-  similarData: TvSeriesType[];
+  similarData: TvSeriesType[] | undefined;
 }) => {
 
   return (
@@ -32,7 +32,7 @@ const SimilarFilmSlider = ({
         },
       }}
     >
-      {similarData.map((item, i) => (
+      {similarData && similarData.map((item, i) => (
         <SwiperSlide key={i}>
           <Link
             href={`${item.id}`}

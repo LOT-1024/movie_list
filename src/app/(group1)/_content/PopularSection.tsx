@@ -6,12 +6,13 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import YoutubeModal from "./YoutubeModal";
 import { Movie } from "@/interface/type";
 import Link from "next/link";
 import BackdropImage from "@/components/detailImage/BackdropImage";
 import ImagePoster from "@/components/detailImage/ImagePoster";
+import { getMoviesPopularHero } from "@/api/movieapiclient";
 
 const containerAnimation = {
   starter: {},
@@ -38,14 +39,29 @@ const itemsAnimation = {
   },
 };
 
-const PopularSection = ({ data }: { data: Movie[] }) => {
+const PopularSection = () => {
   const [modalStatus, setModalStatus] = useState(false);
   const [movieId, setMovieId] = useState(1022789);
+  const [data, setData] = useState<Movie[]>([])
 
   function modalHandler(itemId: number) {
     setMovieId(itemId);
     setModalStatus((prev) => !prev);
   }
+
+  const fetchData = async () => {
+    try {
+      const fetchData = await getMoviesPopularHero()
+      setData(fetchData)
+    } catch (error) {
+      console.error("BROOO THIS ERROR",error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
+  
 
   return (
     <section className="h-[16.875rem] sm:h-[41.875rem] xl:h-[50rem] text-white">
