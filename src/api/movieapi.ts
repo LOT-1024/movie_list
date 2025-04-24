@@ -1,4 +1,4 @@
-import { CreditType, Movie, TvSeriesType, VideoType } from "@/interface/type";
+import { Movie, TvSeriesType } from "@/interface/type";
 import axios from "axios";
 
 const API_KEY = process.env.NEXT_API_KEY; // Replace with your actual API key
